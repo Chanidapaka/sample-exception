@@ -24,6 +24,7 @@ public class FileService {
     private final Path fileStorageLocation;
     private final FileStorageProperties fileStorageProperties;
 
+    //Constructor
     @Autowired
     public FileService(FileStorageProperties fileStorageProperties) {
         this.fileStorageProperties = fileStorageProperties;
@@ -39,6 +40,7 @@ public class FileService {
         }
     }
 
+    //- ตรวจสอบว่าไฟล์ที่อัพโหลดรองรับประเภทไฟล์หรือไม่ และ คัดลอกไฟล์ไปยังไดเรกทอรีที่กำหนดและคืนชื่อไฟล์
     public String store(MultipartFile file) {
         if (! isSupportedContentType(file)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
@@ -60,6 +62,7 @@ public class FileService {
         }
     }
 
+    //โหลดไฟล์จากที่เก็บตามชื่อไฟล์และคืนเป็น Resource
     public Resource loadFileAsResource(String fileName) {
         try {
             Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
@@ -75,6 +78,7 @@ public class FileService {
         }
     }
 
+    //ตรวจสอบประเภทของไฟล์โดยใช้ Files.probeContentType()
     public String getFileType(Resource resource) {
         try {
             String type = Files.probeContentType(resource.getFile().toPath());
@@ -84,6 +88,7 @@ public class FileService {
         }
     }
 
+    //ลบไฟล์ออกจากที่เก็บตามชื่อไฟล์
     public void removeFile(String fileName) {
         try {
             Path filePath = this.fileStorageLocation.resolve(fileName).normalize();
@@ -104,12 +109,14 @@ public class FileService {
     }
 
     //List อันนี้หลายอัน
+    //รองรับการอัพโหลดไฟล์หลายไฟล์ในครั้งเดียว โดยจะเรียก store() สำหรับแต่ละไฟล์
     public List<String> store(List<MultipartFile> files) {
         List<String> fileNames = new ArrayList<>(files.size());
         files.forEach(file -> fileNames.add(store(file)));
         return fileNames;
     }
 
+    //ค้นหาไฟล์ที่ตรงกับ pattern ที่กำหนด (ใช้ glob pattern matching)
     public List<String> getMatchedFiles(String pattern) {
         List<String> matchesList = new ArrayList<String>();
         FileVisitor<Path> matcherVisitor = new SimpleFileVisitor<Path>() {

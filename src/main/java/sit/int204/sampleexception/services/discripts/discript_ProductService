@@ -1,0 +1,34 @@
+คลาส ProductService นี้ทำหน้าที่ในการจัดการข้อมูลของสินค้า (Product) โดยใช้ repository ที่เชื่อมต่อกับฐานข้อมูล (ProductRepo) มีฟังก์ชันหลักๆ ดังนี้:
+
+ฟังก์ชันหลัก:
+findAllProduct(int page, int size):
+- ดึงข้อมูลสินค้าทั้งหมดจากฐานข้อมูล โดยใช้การแบ่งหน้า (pagination) ด้วย PageRequest.of(page, size) เพื่อกำหนดจำนวนข้อมูลต่อหน้าและหน้าที่ต้องการ
+- คืนค่าผลลัพธ์เป็น Page<Product> ซึ่งช่วยให้สามารถจัดการข้อมูลที่มีจำนวนมากได้ง่ายขึ้น
+
+findAllProduct():
+- ดึงข้อมูลสินค้าทั้งหมดจากฐานข้อมูล (ไม่ใช้การแบ่งหน้า)
+- คืนค่าผลลัพธ์เป็น List<Product>
+
+findProductById(String productCode):
+- ค้นหาสินค้าตามรหัสสินค้า (productCode)
+- หากไม่พบสินค้าจะโยน exception ชื่อ ItemNotFoundException เพื่อแจ้งว่าไม่พบสินค้านั้นๆ
+
+createProduct(Product product):
+- เพิ่มสินค้าลงในฐานข้อมูล
+- ใช้ productRepo.save(product) เพื่อบันทึกข้อมูลสินค้าใหม่
+
+updateProduct(Product product):
+- อัปเดตข้อมูลสินค้าบนฐานข้อมูล
+- ใช้ productRepo.save(product) เพื่ออัปเดตข้อมูลสินค้า
+
+deleteProduct(String productCode):
+- ลบสินค้าจากฐานข้อมูลตามรหัสสินค้า (productCode)
+
+การทำงานโดยรวม:
+คลาส ProductService ทำหน้าที่เป็นตัวกลางในการเข้าถึงข้อมูลสินค้า และให้บริการต่างๆ เช่น การค้นหาข้อมูลสินค้า การสร้าง การอัปเดต และการลบสินค้า
+
+การจัดการ pagination: ฟังก์ชัน findAllProduct(int page, int size) ช่วยให้สามารถดึงข้อมูลสินค้าเป็นหน้าๆ ได้
+
+Exception handling: ฟังก์ชัน findProductById จัดการกรณีที่ไม่พบข้อมูลสินค้าด้วยการโยน exception เพื่อแจ้งเตือน
+
+การใช้งานหลัก: ใช้ในการจัดการข้อมูลสินค้าในฐานข้อมูล รวมถึงการเพิ่ม, อัปเดต, ค้นหา, และลบสินค้าผ่าน repository.
