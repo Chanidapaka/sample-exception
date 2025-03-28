@@ -23,14 +23,15 @@ public class ProductController {
     @Autowired
     private ListMapper listMapper;
 
-    @GetMapping("/{id}")
+    @GetMapping("/{productCode}")
     public ResponseEntity<ProductDtoA> getProduct(@PathVariable String id) {
         return ResponseEntity.ok(modelMapper.map(productService.findProductById(id), ProductDtoA.class));
     }
 
     @GetMapping("")
     public ResponseEntity<PageDto<ProductDtoA>> getAllProducts(
-            @RequestParam Integer pageNo, @RequestParam Integer pageSize
+            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "10") Integer pageSize
     ) {
         Page<Product> productPage = productService.findAllProduct(pageNo, pageSize);
         return ResponseEntity.ok(listMapper.toPageDTO(productPage, ProductDtoA.class, modelMapper));
