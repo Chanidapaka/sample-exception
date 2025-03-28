@@ -12,6 +12,7 @@ import sit.int204.sampleexception.exceptions.MyErrorResponse;
 
 import java.util.List;
 
+//class 5
 @RestControllerAdvice
 public class ExceptionController {
     @ExceptionHandler(IllegalAccessError.class)

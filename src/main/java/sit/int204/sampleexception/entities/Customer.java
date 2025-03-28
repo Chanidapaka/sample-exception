@@ -1,5 +1,6 @@
 package sit.int204.sampleexception.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -70,6 +71,7 @@ public class Customer {
     private BigDecimal creditLimit;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "salesRepEmployeeNumber")
     private Employee salesRepEmployee;
 }

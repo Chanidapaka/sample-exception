@@ -13,6 +13,7 @@ import sit.int204.sampleexception.utils.FileStorageProperties;
 
 import java.util.List;
 
+//class 4
 @RestController
 @RequestMapping("/api/files")
 public class FileController {

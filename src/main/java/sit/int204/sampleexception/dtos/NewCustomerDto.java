@@ -3,6 +3,7 @@ package sit.int204.sampleexception.dtos;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
+//class 4
 @Data
         public class NewCustomerDto {
             //เพื่อรับ Object ใหม่จาก Frontend

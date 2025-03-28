@@ -10,7 +10,7 @@ import sit.int204.sampleexception.entities.Customer;
 import sit.int204.sampleexception.repositories.CustomerRepo;
 
 import java.util.List;
-
+//class 4
 //นี้เป็น Service class ที่ใช้ในการจัดการข้อมูลลูกค้า โดยใช้ repository (ตัวจัดการกับฐานข้อมูล)
 // และ ModelMapper สำหรับการแปลงข้อมูลระหว่าง DTO และ Entity
 @Service

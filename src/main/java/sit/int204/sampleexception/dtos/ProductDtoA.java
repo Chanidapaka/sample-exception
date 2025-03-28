@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 
+//class 4 และ 5
 @Getter
 @Setter
 public class ProductDtoA {

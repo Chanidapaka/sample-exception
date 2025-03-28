@@ -10,6 +10,7 @@ import sit.int204.sampleexception.dtos.NewCustomerDto;
 import sit.int204.sampleexception.entities.Customer;
 import sit.int204.sampleexception.services.CustomerService;
 
+//class 4
 @RestController
 @RequestMapping("/api/customers")
 public class CustomerController {
@@ -22,6 +23,7 @@ public class CustomerController {
         return ResponseEntity.ok(name);
     }
 
+//บทที่4
     @PostMapping("")
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseEntity<NewCustomerDto> addCustomer(

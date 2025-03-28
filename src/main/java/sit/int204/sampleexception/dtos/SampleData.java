@@ -5,6 +5,7 @@ import lombok.Data;
 
 import java.time.LocalDate;
 
+//class 4
 @Data //รวม getter setter and to string ไว้ข้างใน
 public class SampleData {
 //    ห้ามเป็น null และตัวเลข น้อยสุด อยู่ที่ 10001 และมากสุดที่ 99999
